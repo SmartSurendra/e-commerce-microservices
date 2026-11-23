@@ -1,0 +1,28 @@
+package com.commerce.order.mapper;
+
+import org.springframework.stereotype.Component;
+
+import com.commerce.order.dto.OrderRequest;
+import com.commerce.order.order.Order;
+import com.commerce.order.order.OrderResponse;
+
+@Component
+public class OrderMapper {
+
+	public Order toEntity(OrderRequest request) {
+		
+	    Order order = new Order();
+		order.setSkuCode(request.getSkuCode());
+		order.setQuantity(request.getQuantity());
+		order.setPrice(request.getPrice());
+		
+		return order;
+	}
+	
+	public OrderResponse toResponse(Order order) {
+		
+		return new OrderResponse(
+			   order.getOrderNumber(),
+			   order.getOrderStatus());
+	}
+}

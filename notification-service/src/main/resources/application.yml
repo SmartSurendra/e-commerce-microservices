@@ -1,0 +1,43 @@
+server:
+  port: 8082
+  
+spring:
+ kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer:
+        org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.package: "*"
+        
+ mail:
+  host: smtp.gmail.com
+  port: 587
+  username: hindicodeclass@gmail.com
+  password: 123456
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          
+          
+          
+          
+twilio:
+  account-sid: ${ACCOUNT_SID}
+  auth-token: ${ACCOUNT_TOKEN}
+  from-number: 254685974
+  
+  management:
+     tracing:
+       sampling:
+         probability: 1.0
+  	        
+     zipkin:
+         tracing:
+           endpoint: http://localhost:9411/api/v2/spans
